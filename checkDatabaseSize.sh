@@ -1,15 +1,25 @@
 #!/bin/bash
 
 if [ "$1" ==  "-v" ] || [ "$1" == "--version" ]; then 
-	echo "+--------------------------------------------------------------------------------+"
-	echo "| MySQL Database Size Checker - Version 0.1                                      |"
-	echo "+--------------------------------------------------------------------------------+"
-	echo "| Copyright (C) 2010 Free Software Foundation, Inc.                              |"
-	echo "| License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>. |"
-	echo "| This is free software: you are free to change and redistribute it.             |"
-	echo "| There is NO WARRANTY, to the extent permitted by law.                          |"
-	echo "| Written by Naim (hotfloppy.6866[AT]gmail.com)                                  |"
-	echo "+--------------------------------------------------------------------------------+"
+	echo "+---------------------------------------------------------------------------------+"
+	echo "| MySQL Database Size Checker - Version 0.1                                       |"
+	echo "+---------------------------------------------------------------------------------+"
+	echo "| Copyright [2011] [hotfloppy @ HFBox]                                            |"
+	echo "|                                                                                 |"
+	echo "| Licensed under the Apache License, Version 2.0 (the "License");                   |"
+	echo "| you may not use this file except in compliance with the License.                |"
+	echo "| You may obtain a copy of the License at                                         |"
+	echo "|                                                                                 |"
+	echo "|     http://www.apache.org/licenses/LICENSE-2.0                                  |"
+	echo "|                                                                                 |"
+	echo "| Unless required by applicable law or agreed to in writing, software             |"
+	echo "| distributed under the License is distributed on an "AS IS" BASIS,                 |"
+	echo "| WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.        |"
+	echo "| See the License for the specific language governing permissions and             |"
+	echo "| limitations under the License.                                                  |"
+	echo "|                                                                                 |"
+	echo "| Written by Naim (hotfloppy.6866[AT]gmail.com)                                   |"
+	echo "+---------------------------------------------------------------------------------+"
 	exit 0
 fi
 
