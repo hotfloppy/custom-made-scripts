@@ -8,9 +8,9 @@
 #fi
 
 if [[ "$#" -ne 0 ]]; then
-  for key in "$@"; do
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "$key"
-  done
+    for key in "$@"; do
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "$key"
+    done
 fi
 
 exit 0

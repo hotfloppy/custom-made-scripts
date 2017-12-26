@@ -3,15 +3,15 @@
 # check either aptitude has been installed or not
 which aptitude > /dev/null
 if [ $? -ne 0 ]; then
-        echo "Aptitude not installed. Installing.."
-        sudo apt-get install aptitude
+    echo "Aptitude not installed. Installing.."
+    sudo apt-get install aptitude
 fi
 
 # make sure that first parameter is not --show
 if [ $# -eq 1 ]; then
     if [ "$1" != "--show" ] || [ "$1" != "-s" ]; then
-	aptitude search $@
-	exit 0
+        aptitude search $@
+        exit 0
     fi
 fi
 
