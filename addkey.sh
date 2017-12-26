@@ -11,6 +11,9 @@ if [[ "$#" -ne 0 ]]; then
     for key in "$@"; do
         sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys "$key"
     done
+else
+    echo "usage: $0 9BDB3D89CE49EC21 CE49EC22"
+    exit 99
 fi
 
 exit 0
