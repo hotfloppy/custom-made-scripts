@@ -10,7 +10,7 @@ fi
 # make sure that first parameter is not --show
 if [ $# -eq 1 ]; then
     if [ "$1" != "--show" ] || [ "$1" != "-s" ]; then
-	aptitude search $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11}
+	aptitude search $@
 	exit 0
     fi
 fi
@@ -24,6 +24,7 @@ fi
 #}
 
 if [ "$1" == "-s" ] || [ "1" == "--show" ]; then
-    aptitude show $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11}
+    shift
+    aptitude show $@
     exit 0
 fi
