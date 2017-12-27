@@ -3,8 +3,8 @@
 PATHNAME=$(dirname $(readlink -f $0))
 source ${PATHNAME}/config
 
-if [ $(dpkg -l | grep -c xprintidle) -eq 0 ]; then
-    apt install xprintidle -y --force-yes
+if [[ $(which xprintidle > /dev/null) ]]; then
+    apt install xprintidle -qq
 fi
 
 users=($(who | awk '{ print $1 }' | grep -v root | sort | uniq ))

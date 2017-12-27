@@ -1,10 +1,8 @@
 #!/bin/bash
 
 # check either aptitude has been installed or not
-which aptitude > /dev/null
-if [ $? -ne 0 ]; then
-    echo "Aptitude not installed. Installing.."
-    sudo apt-get install aptitude
+if [ $(which aptitude > /dev/null) ]; then
+    sudo apt install aptitude -qq
 fi
 
 # make sure that first parameter is not --show

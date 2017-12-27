@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-which ethtool > /dev/null
-if [ $? -ne 0 ]; then
-    echo "Ethtool not installed. Installing.."
+if [ $(which ethtool > /dev/null) ]; then
     sudo apt-get install ethtool -qq
 fi
 

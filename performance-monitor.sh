@@ -16,7 +16,7 @@ LINE3='>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 mkdir -p $LOGDIR
 
 # install/update required apps
-apt-get install lm-sensors iperf3 -qq
+apt install lm-sensors iperf3 -qq
 
 main() {
     echo $LINE1
