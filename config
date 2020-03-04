@@ -1,3 +1,10 @@
-red="\e[91m"
+#red="\e[91m"
+red="\e[31m"
+green="\e[32m"
+yellow="\e[33m"
+blue="\e[34m"
+
 bold="\e[1m"
 nc="\e[0m"
+
+lines="printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -"
