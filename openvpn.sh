@@ -19,7 +19,7 @@ if [[ ! -f $ovpndir/credentials ]]; then
 fi
 
 listconfig() {
-  #clear
+  clear
   ovpnList=(`ls -1 $ovpndir/*.ovpn`)
   for ((i=0; i<${#ovpnList[@]}; i++)); do
     echo "[ $i ] ${ovpnList[${i}]}"
