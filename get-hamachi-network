@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+basedir="$(dirname $(readlink -f $0))"
+source ${basedir}/config
+
+if [[ ! -e "/usr/local/bin/hamachi" ]]; then
+  echo -e "\n${bold}${red}[ERROR] ${nc}Logmein Hamachi is not installed."
+  echo -e "${bold}${yellow}[INFO] ${nc}Please download and install them from ${bold}${yellow}https://www.vpn.net/${nc}\n"
+  exit 99
+fi
+
+if [[ $# -lt 1 ]]; then
+  echo -e "\n${bold}${red}[ERROR] ${nc}Please supply network or machine name(s).\n\n${bold}${yellow}Example:\n${green}$ get-hamachi-network praveen\n${green}$ get-hamachi-network praveen adria amazon${nc}\n"
+  exit 99
+fi
+
+for host in $@; do
+  hamachi list | grep --color -C 5 -i $host
+done
