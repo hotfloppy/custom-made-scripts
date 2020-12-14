@@ -1,16 +1,37 @@
 #!/usr/bin/env bash
 
-# reference: https://forum.manjaro.org/t/switch-audio-output-between-headphone-and-speaker-while-both-plugged-in/148637/23
+# reference: https://unix.stackexchange.com/questions/462670/set-default-profile-for-pulseaudio
 
-if amixer --card=0 get 'Auto-Mute Mode' | grep -q "Item0: 'Enabled'"
-then
-  echo "Switched to Speaker"
-  notify-send -t 2000 "Switched to Speaker"
-  pactl set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-lineout
-  amixer --card=0 set 'Auto-Mute Mode' Disabled >/dev/null
-else
+confdir="$HOME/.config/hfbox"
+conffile="audio-switch-toggle"
+
+enable_headphone() {
   echo "Switched to Headphone"
   notify-send -t 2000 "Switched to Headphone"
-  pactl set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-headphones
-  amixer --card=0 set 'Auto-Mute Mode' Enabled >/dev/null
+  pactl set-card-profile 1 output:analog-stereo+input:multichannel-input
+  pactl set-card-profile 2 off
+  echo "headphone" > $confdir/$conffile
+}
+
+enable_speaker() {
+  echo "Switched to Speaker"
+  notify-send -t 2000 "Switched to Speaker"
+  pactl set-card-profile 1 off 
+  pactl set-card-profile 2 output:analog-stereo
+  echo "speaker" > $confdir/$conffile
+}
+
+if [[ ! -f $confdir/$conffile ]]; then
+  mkdir -p $confdir
+  echo "headphone" > $confdir/$conffile
+#  pactl set-card-profile 1 output:analog-stereo+input:multichannel-input
+#  pactrl set-card-profile 2 off
+  enable_headphone
+  exit 0
+fi
+
+if grep -q headphone $confdir/$conffile ; then
+  enable_speaker
+else
+  enable_headphone
 fi
