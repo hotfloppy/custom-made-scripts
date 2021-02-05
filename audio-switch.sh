@@ -9,9 +9,10 @@ enable_headphone() {
   echo "Switched to Headphone"
   notify-send -t 2000 "Switched to Headphone"
   pactl set-card-profile 0 off # hdmi
-  pactl set-card-profile 1 off # speaker
-  pactl set-card-profile 2 off # loopback
-  pactl set-card-profile 3 output:analog-stereo+input:multichannel-input # headphone
+  pactl set-card-profile 2 output:analog-stereo+input:multichannel-input # headphone
+  pactl set-card-profile 3 off # speaker
+  pactl set-card-profile 1 off # loopback
+  pactl set-card-profile 4 off # loopback
   echo "headphone" > $confdir/$conffile
 }
 
@@ -19,9 +20,10 @@ enable_speaker() {
   echo "Switched to Speaker"
   notify-send -t 2000 "Switched to Speaker"
   pactl set-card-profile 0 off # hdmi
-  pactl set-card-profile 1 output:analog-stereo # speaker
-  pactl set-card-profile 2 off # loopback
-  pactl set-card-profile 3 off # headphone
+  pactl set-card-profile 2 off # headphone
+  pactl set-card-profile 3 output:analog-stereo # speaker
+  pactl set-card-profile 1 off # loopback
+  pactl set-card-profile 4 off # loopback
   echo "speaker" > $confdir/$conffile
 }
 
