@@ -21,9 +21,9 @@ enable_speaker() {
   notify-send -t 2000 "Switched to Speaker"
   pactl set-card-profile 0 off # hdmi
   pactl set-card-profile 2 off # headphone
-  pactl set-card-profile 3 output:analog-stereo # speaker
+  pactl set-card-profile 4 output:analog-stereo # speaker
   pactl set-card-profile 1 off # loopback
-  pactl set-card-profile 4 off # loopback
+  pactl set-card-profile 3 off # loopback
   echo "speaker" > $confdir/$conffile
 }
 
