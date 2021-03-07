@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+source config
+
+given_temperature=$2
+
+function f2c() {
+  temperature="$(echo -e "($given_temperature - 32) * 5/9" | bc)"
+  echo -e "
+  =======================
+  | Farenheit to Celcius
+  =======================
+  | Farenheit\t: ${given_temperature}°F
+  | Celcius\t: ${temperature}°C
+  ======================="
+}
+
+function c2f() {
+  temperature="$(echo -e "($given_temperature * 9/5) + 32" | bc)"
+  echo -e "
+  =======================
+  | Celcius to Farenheit
+  =======================
+  | Celcius\t: ${given_temperature}°C
+  | Farenheit\t: ${temperature}°F
+  ======================="
+}
+
+function error_msg() {
+  echo -e "${red}usage:\n\t$(basename $0) (f|farenheit|c|celcius) temperature-to-convert${nc}"
+  echo -e "${green}example:\n\t${scriptname} f 32${nc}"
+  exit 99
+}
+
+if [[ $# -lt 2 ]]; then
+  error_msg
+fi
+
+fc=("f" "c" "farenheit" "celcius")
+if ! echo -e ${fc[@]} | grep -q -w $1 ; then
+    error_msg
+fi
+
+case $1 in
+  f) f2c ;;
+  farenheit) f2c ;;
+  c) c2f ;;
+  celcius) c2f ;;
+  *) error_msg ;;
+esac
