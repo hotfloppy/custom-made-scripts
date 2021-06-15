@@ -19,6 +19,11 @@ for ((card=0; card<${cards_count}; card++)); do
   pactl set-card-profile $card off
 done
 
+#
+# Configure the card's profile to the one you prefer.
+# Retrieve profiles using this command:
+#   $ pactl list cards | grep -iE 'alsa.card_name|profile\('
+#
 enable_headphone() {
   echo "Switched to Headphone"
   notify-send -t 2000 "Switched to Headphone"
@@ -36,8 +41,6 @@ enable_speaker() {
 if [[ ! -f $confdir/$conffile ]]; then
   mkdir -p $confdir
   echo "headphone" > $confdir/$conffile
-#  pactl set-card-profile 1 output:analog-stereo+input:multichannel-input
-#  pactrl set-card-profile 2 off
   enable_headphone
   exit 0
 fi
