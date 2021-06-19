@@ -57,18 +57,6 @@ main() {
     echo
     
     echo $LINE2
-    echo "## LIST GANGLIA & MOOSE"
-    echo $LINE2
-    ls /ganglia /moose
-    echo
-    
-    #echo $LINE2
-    #echo "## CONNECTION TO NETWORK SPEEDTEST"
-    #echo $LINE2
-    #iperf3 -c kabila
-    #echo
-    
-    echo $LINE2
     echo "## LAST 20 LINES FROM SYSLOG"
     echo $LINE2
     grep -v "CRON" /var/log/syslog | tail -n20
