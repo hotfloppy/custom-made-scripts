@@ -3,8 +3,8 @@
 PATHNAME=$(dirname $(readlink -f $0))
 source ${PATHNAME}/config
 
-pdftk_installed=$(dpkg -l | grep pdftk | wc -l)
-if [[ "$pdftk_installed" -lt 1 ]]; then
+#pdftk_installed=$(dpkg -l | grep pdftk | wc -l)
+if [[ ! $(command -v pdftk) ]]; then
   echo -e ${red}"PDFTk not installed. Abort operation."${nc}
   exit 99
 fi
@@ -17,12 +17,16 @@ fi
 
 shopt -s nullglob
 
-files=()
-for pdf in *.pdf; do
-  if [ $(echo "$pdf" | grep -c mergedpdf-) -eq 0 ]; then
-    files+=( "$pdf" )
-  fi
-done
+if [[ $# -gt 0 ]]; then
+  files=($@)
+else
+  files=()
+  for pdf in *.pdf; do
+    if [ $(echo "$pdf" | grep -c mergedpdf-) -eq 0 ]; then
+      files+=( "$pdf" )
+    fi
+  done
+fi
 
 shopt -u nullglob
 
@@ -32,5 +36,4 @@ if [[ "$?" -eq 0 ]]; then
   echo -e ${green}"PDF files has been merged into $filename"${nc}
 else
   echo -e ${red}"Something went wrong. Merging FAILED."${nc}
-
-exit 0
+fi

@@ -2,9 +2,33 @@
 
 source config
 
-given_temperature=$2
+error_msg() {
+  echo -e "\n${red}Usage:\n\t${scriptname} (f|farenheit|c|celcius) temperature-to-convert${nc}\n"
+  echo -e "${green}Example:\n\t${scriptname} f 32${nc}"
+  exit 99
+}
 
-function f2c() {
+scale_setup() {
+  fc=("f" "c" "farenheit" "celcius")
+  if [[ $(echo -e ${fc[@]} | grep -c $1) -eq 0 ]]; then
+      error_msg
+  else
+      scale=$1
+  fi
+}
+
+if [[ $# -gt 2 ]]; then
+  echo -e "\n${red}Pleave provide 2 parameters only."
+  error_msg
+fi
+
+#if [[ $# -lt 2 ]]; then
+  
+#fi
+
+given_temperature="$2"
+
+f2c() {
   temperature="$(echo -e "($given_temperature - 32) * 5/9" | bc)"
   echo -e "
   =======================
@@ -15,7 +39,7 @@ function f2c() {
   ======================="
 }
 
-function c2f() {
+c2f() {
   temperature="$(echo -e "($given_temperature * 9/5) + 32" | bc)"
   echo -e "
   =======================
@@ -26,20 +50,10 @@ function c2f() {
   ======================="
 }
 
-function error_msg() {
-  echo -e "${red}usage:\n\t$(basename $0) (f|farenheit|c|celcius) temperature-to-convert${nc}"
-  echo -e "${green}example:\n\t${scriptname} f 32${nc}"
-  exit 99
-}
-
 if [[ $# -lt 2 ]]; then
   error_msg
 fi
 
-fc=("f" "c" "farenheit" "celcius")
-if ! echo -e ${fc[@]} | grep -q -w $1 ; then
-    error_msg
-fi
 
 case $1 in
   f) f2c ;;
