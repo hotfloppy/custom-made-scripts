@@ -13,5 +13,3 @@ clear
 pushd /
 du -sh bin boot data dev etc home lib* local media mnt opt usr var | tee /tmp/checkusage.log
 popd
-
-exit 0
