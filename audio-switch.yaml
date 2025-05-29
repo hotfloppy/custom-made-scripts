@@ -1,0 +1,7 @@
+current: headphone
+device:
+  speaker: HDA Intel PCH
+  headphone: FANTECH OCTANE 7.1
+volume:
+  up: 5
+  down: 5
