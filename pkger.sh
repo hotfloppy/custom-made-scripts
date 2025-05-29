@@ -4,7 +4,7 @@
 function pkger() {
 
 	# set default package manager to use
-  if [[ command -v apt ]]; then
+  if [[ $(command -v apt) ]]; then
     pkger_flag="apt"
     exit 0
   else
